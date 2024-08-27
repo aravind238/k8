@@ -1,10 +1,7 @@
-#uvicorn main:app --reload
-from fastapi import FastAPI, Request, Form
-from fastapi.templating import Jinja2Templates
-
-app = FastAPI()
-templates = Jinja2Templates(directory="/code")
-
-@app.get("/")
-def form_post(request: Request):
-    return templates.TemplateResponse('form.html', context={'request': request})
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def hello_world():
+ return 'Hello from a deployed web app!'
+if __name__ == '__main__':
+ app.run(host='0.0.0.0', port=5000)
